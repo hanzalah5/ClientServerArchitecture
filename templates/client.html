@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Interface</title>
+</head>
+<body>
+    <h1>Client Interface</h1>
+    <form id="message-form">
+        <label for="message">Enter a message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Send</button>
+    </form>
+
+    <form id = "key_gen" method="GET" action="/button_click">
+        <button type="submit">Get Key</button>
+    </form>
+
+    <div id="response"></div>
+    <script>
+        document.getElementById("message-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var message = document.getElementById("message").value;
+            fetch('/send', {
+                method: 'POST',
+                body: new URLSearchParams({ 'message': message }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+            .then(response => response.json())
+            // .then(data => {
+            //     document.getElementById("response").innerText = 'Server Response: ' + data.response;
+            // });
+        });
+
+
+        document.getElementById("key_gen").addEventListener("submit", function(event) {
+            event.preventDefault();
+           
+            fetch('/button_click', {
+                method: 'GET',
+                // body: new URLSearchParams({ 'message': message }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response").innerText = 'Server Response: ' + data.response;
+            });
+        });
+
+
+
+    </script>
+
+
+
+</body>
+</html>

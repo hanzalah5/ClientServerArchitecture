@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Response</title>
+</head>
+<body>
+    <h1>Server Response</h1>
+    <div id="response"></div>
+    <script>
+        var serverResponse = "{{ server_response }}";  // Insert the server response here
+        document.getElementById("response").innerText = 'Server Response: ' + serverResponse;
+    </script>
+</body>
+</html>
